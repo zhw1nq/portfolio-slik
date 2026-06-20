@@ -93,6 +93,81 @@
       },
       "platforms": {
         "title": "Dukungan di Platform"
+      },
+      "jobs": {
+        "title": "Karier",
+        "description": "Karier profesional dan riwayat kerja saya.",
+        "metaTitle": "Karier",
+        "metaDescription": "Karier profesional dan riwayat kerja saya.",
+        "items": {
+          "neverlose": {
+            "role": "Software Developer",
+            "company": "neverlose.cc",
+            "desc": "Pengembangan perangkat lunak dan optimalisasi sistem."
+          },
+          "sevenColor": {
+            "role": "Admin Developer",
+            "company": "7 Màu Community",
+            "desc": "Administrator dan pengembang komunitas."
+          },
+          "hvhfl": {
+            "role": "Build Server Guangdong",
+            "company": "hvhfl.cn",
+            "desc": "Menyiapkan dan mengoperasikan server regional Guangdong."
+          },
+          "phyddoser": {
+            "role": "System Administration",
+            "company": "Phy DDoser",
+            "desc": "Administrator sistem untuk jaringan dan infrastruktur."
+          },
+          "vnsserver": {
+            "role": "Teknisi Keamanan Jaringan",
+            "company": "VNS Server",
+            "desc": "Teknisi keamanan jaringan."
+          }
+        }
+      },
+      "community": {
+        "title": "Komunitas",
+        "description": "Komunitas yang telah saya bangun dan kontribusikan.",
+        "metaTitle": "Komunitas",
+        "metaDescription": "Komunitas yang telah saya bangun dan kontribusikan.",
+        "items": {
+          "sevenmau": {
+            "name": "7-mau.com",
+            "role": "Komunitas Server CS2 Vietnam",
+            "desc": "Membangun dan mengelola komunitas server game CS2 terbesar di Vietnam. Mengonfigurasi server, mengoptimalkan kinerja, mengelola mode game, dan membina komunitas pemain yang aktif.",
+            "f1": "Infrastruktur Server Game Beragam: Menghosting mode game Retakes, PUG, Duel, dan 1v1 berperforma tinggi pada tickrate yang dioptimalkan",
+            "f2": "Keterlibatan 10K+ Anggota Komunitas: Mengembangkan dan mengelola Discord aktif serta grup sosial yang menghubungkan para gamer setiap hari",
+            "f3": "Integrasi Otomatis: Menyinkronkan fitur Skin Changer, Rank, status VIP, dan toko dalam game secara langsung",
+            "f4": "Jaringan Latensi Rendah: Server di-host di datacenter terkemuka Vietnam yang dilindungi oleh pelindung anti-cheat khusus"
+          },
+          "zsystems": {
+            "name": "zSystems",
+            "role": "Platform Web All-In-One (AIO)",
+            "desc": "Web dashboard AIO yang mengintegrasikan pelacak statistik, papan peringkat pemain, log ban/mute, toko online, dan sistem checkout donasi otomatis untuk server 7-Màu.",
+            "f1": "Antarmuka pengguna modern yang dioptimalkan untuk tata letak seluler",
+            "f2": "Integrasi API Source Query untuk statistik & papan peringkat waktu nyata",
+            "f3": "Sinkronisasi dua arah catatan Ban/Mute/Kick langsung dengan server CS2",
+            "f4": "Integrasi sistem VIPCore"
+          },
+          "ntmg": {
+            "name": "NTMG (Nhà trẻ Mèo Giặt)",
+            "role": "Kontributor Kode",
+            "desc": "Berfokus secara eksklusif pada optimalisasi web dan refactoring kode sumber di bawah standar internasional yang kuat.",
+            "f1": "Optimalkan kinerja web dan struktur arsitektur",
+            "f2": "Refactor dan pelihara kode sumber sesuai dengan standar industri global",
+            "f3": "Pastikan protokol keamanan yang kuat dan skalabilitas maksimum"
+          },
+          "swiftly": {
+            "name": "Plugin SwiftlyS2",
+            "role": "Pengembang Plugin",
+            "desc": "Merancang dan memprogram plugin server berkinerja tinggi yang disesuaikan menggunakan SwiftlyS2 Framework untuk menghadirkan fitur gameplay unik bagi server game.",
+            "f1": "Optimalkan ekstensi gameplay kustom menggunakan API C# SwiftlyS2",
+            "f2": "Desain manajemen VIP, pemilih skin kustom, dan modul hadiah",
+            "f3": "Otomatisasi pencatat statistik dan sistem pemungutan suara peta"
+          }
+        }
       }
     }
   },
@@ -130,7 +205,7 @@
   },
   "notification": {
     "title": "Notifikasi",
-    "message": "Ini adalah notifikasi contoh. Anda dapat memperbarui konten ini sesuai kebutuhan Anda."
+    "messagePrefix": "Kode sumber dipublikasikan di "
   }
 }
 

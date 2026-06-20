@@ -93,6 +93,81 @@
       },
       "platforms": {
         "title": "在平台上支持"
+      },
+      "jobs": {
+        "title": "職業生涯",
+        "description": "我的職業生涯和工作經歷。",
+        "metaTitle": "職業生涯",
+        "metaDescription": "我的職業生涯和工作經歷。",
+        "items": {
+          "neverlose": {
+            "role": "軟件開發人員",
+            "company": "neverlose.cc",
+            "desc": "軟件開發和系統優化。"
+          },
+          "sevenColor": {
+            "role": "管理開發人員",
+            "company": "7 Màu Community",
+            "desc": "社區管理員和開發人員。"
+          },
+          "hvhfl": {
+            "role": "廣東服務器搭建",
+            "company": "hvhfl.cn",
+            "desc": "搭建並運營廣東地區服務器。"
+          },
+          "phyddoser": {
+            "role": "系統管理",
+            "company": "Phy DDoser",
+            "desc": "網絡及基礎設施系統管理員。"
+          },
+          "vnsserver": {
+            "role": "網絡安全技術員",
+            "company": "VNS Server",
+            "desc": "網絡安全技術人員。"
+          }
+        }
+      },
+      "community": {
+        "title": "社區",
+        "description": "我建立和做出貢獻的社區。",
+        "metaTitle": "社區",
+        "metaDescription": "我建立和做出貢獻的社區。",
+        "items": {
+          "sevenmau": {
+            "name": "7-mau.com",
+            "role": "越南 CS2 伺服器社區",
+            "desc": "建立並管理越南最大的 Counter-Strike 2 遊戲伺服器社區。負責伺服器配置、性能優化、遊戲模式運行以及活躍玩家社區的維護。",
+            "f1": "多樣化遊戲伺服器基礎設施：在優化 Tickrate 下運行高性能的 Retakes、PUG、Duel 和 1v1 遊戲模式",
+            "f2": "10k+ 社區用戶互動：開發和管理活躍的 Discord 及社群，日常連接廣泛玩家",
+            "f3": "自動化功能集成：在遊戲內即時同步皮膚更換器 (Skin Changer)、排位段位、VIP 狀態和商店功能",
+            "f4": "低延遲網路：伺服器託管在越南頂級數據中心，並配有自研定制防作弊保護"
+          },
+          "zsystems": {
+            "name": "zSystems",
+            "role": "多合一 (AIO) 網頁平台",
+            "desc": "專為 7-Màu 伺服器開發的多合一 (AIO) 網頁後台，集成了統計跟蹤器、玩家排行榜、封禁/禁言日誌、線上商店和自動捐贈結帳系統。",
+            "f1": "專為移動版面優化的現代用戶界面",
+            "f2": "集成 Source Query API，提供即時統計資訊 and 排行榜",
+            "f3": "直接與 CS2 伺服器聯動的封禁/禁言/踢出記錄的雙向同步",
+            "f4": "VIPCore 系統集成"
+          },
+          "ntmg": {
+            "name": "NTMG (Nhà trẻ Mèo Giặt)",
+            "role": "代碼貢獻者",
+            "desc": "在強大的國際規範標準下，完全專注於網頁優化和源碼重構。",
+            "f1": "優化網頁性能及架構設計",
+            "f2": "按照全球行業標準重構與維護源代碼",
+            "f3": "確保堅固的安全協議與最大的可擴展性"
+          },
+          "swiftly": {
+            "name": "SwiftlyS2 插件",
+            "role": "插件開發者",
+            "desc": "使用 SwiftlyS2 框架設計並編寫高性能、定制化的伺服器插件，為遊戲伺服器提供獨特的游戏功能。",
+            "f1": "使用 SwiftlyS2 C# API 優化自定義遊戲插件擴展",
+            "f2": "設計 VIP 管理、自定義皮膚選擇器以及獎勵模組",
+            "f3": "自動化的統計記錄器和地圖投票系統"
+          }
+        }
       }
     }
   },
@@ -125,12 +200,12 @@
       "online": "線上",
       "idle": "閒置",
       "dnd": "請勿打擾",
-      "offline": "離線"
+      "offline": "離线"
     }
   },
   "notification": {
     "title": "通知",
-    "message": "這是一個範例通知。您可以根據需要更新此內容。"
+    "messagePrefix": "源碼已開源至 "
   }
 }
 

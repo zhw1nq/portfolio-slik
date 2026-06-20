@@ -93,6 +93,81 @@
       },
       "platforms": {
         "title": "Unterstützung auf Plattformen"
+      },
+      "jobs": {
+        "title": "Karriere",
+        "description": "Meine berufliche Laufbahn und Arbeitsgeschichte.",
+        "metaTitle": "Karriere",
+        "metaDescription": "Meine berufliche Laufbahn und Arbeitsgeschichte.",
+        "items": {
+          "neverlose": {
+            "role": "Software-Entwickler",
+            "company": "neverlose.cc",
+            "desc": "Softwareentwicklung und Systemoptimierung."
+          },
+          "sevenColor": {
+            "role": "Admin-Entwickler",
+            "company": "7 Màu Community",
+            "desc": "Administrator und Community-Entwickler."
+          },
+          "hvhfl": {
+            "role": "Build Server Guangdong",
+            "company": "hvhfl.cn",
+            "desc": "Einrichtung und Betrieb der regionalen Server in Guangdong."
+          },
+          "phyddoser": {
+            "role": "Systemadministration",
+            "company": "Phy DDoser",
+            "desc": "Systemadministrator für Netzwerk und Infrastruktur."
+          },
+          "vnsserver": {
+            "role": "Netzwerksicherheitstechniker",
+            "company": "VNS Server",
+            "desc": "Netzwerksicherheitstechniker."
+          }
+        }
+      },
+      "community": {
+        "title": "Community",
+        "description": "Communities, die ich aufgebaut und zu denen ich beigetragen habe.",
+        "metaTitle": "Community",
+        "metaDescription": "Communities, die ich aufgebaut und zu denen ich beigetragen habe.",
+        "items": {
+          "sevenmau": {
+            "name": "7-mau.com",
+            "role": "Vietnamesische CS2-Server-Community",
+            "desc": "Aufbau und Verwaltung der größten CS2-Gameserver-Community in Vietnam. Konfiguration von Servern, Optimierung der Leistung, Verwaltung von Spielmodi und Förderung einer aktiven Spieler-Community.",
+            "f1": "Vielfältige Gameserver-Infrastruktur: Hosten von leistungsstarken Retakes, PUG, Duel und 1v1 Spielmodi auf optimierten Tickrates",
+            "f2": "Engagement für über 10.000 Mitglieder: Aufbau und Verwaltung eines aktiven Discord-Servers und einer Social-Media-Gruppe, um Gamer täglich zu verbinden",
+            "f3": "Automatisierte Integrationen: Synchronisierung von In-Game Skin Changer, Rängen, VIP-Status und Shop-Funktionen",
+            "f4": "Netzwerke mit geringer Latenz: Server in führenden vietnamesischen Rechenzentren, geschützt durch ein maßgeschneidertes Anti-Cheat-Schild"
+          },
+          "zsystems": {
+            "name": "zSystems",
+            "role": "All-In-One (AIO) Web-Plattform",
+            "desc": "Das AIO-Webdashboard integriert einen Stats-Tracker, eine Spieler-Bestenliste, Ban-/Mute-Protokolle, einen Online-Shop und ein automatisiertes Spendensystem für die 7-Màu-Server.",
+            "f1": "Moderne Benutzeroberfläche, optimiert für mobile Layouts",
+            "f2": "Integriertes Source-Query-API für Echtzeit-Statistiken & Bestenlisten",
+            "f3": "Bidirektionale Synchronisierung von Ban-/Mute-/Kick-Einträgen direkt mit dem CS2-Server",
+            "f4": "Integriertes VIPCore-System"
+          },
+          "ntmg": {
+            "name": "NTMG (Nhà trẻ Mèo Giặt)",
+            "role": "Code-Mitwirkender",
+            "desc": "Ausschließliche Fokussierung auf Weboptimierung und Quellcode-Refactoring unter strengen internationalen Standards.",
+            "f1": "Optimierung von Webleistung und Architekturstruktur",
+            "f2": "Refactoring und Pflege des Quellcodes entsprechend globaler Industriestandards",
+            "f3": "Gewährleistung robuster Sicherheitsprotokolle und maximaler Skalierbarkeit"
+          },
+          "swiftly": {
+            "name": "SwiftlyS2 Plugins",
+            "role": "Plugin-Entwickler",
+            "desc": "Entwicklung hochperformanter, angepasster Server-Plugins unter Verwendung des SwiftlyS2-Frameworks, um einzigartige Gameplay-Features für Gameserver bereitzustellen.",
+            "f1": "Optimierung maßgeschneiderter Gameplay-Erweiterungen unter Verwendung der SwiftlyS2 C#-APIs",
+            "f2": "Design von VIP-Verwaltung, benutzerdefinierten Skin-Auswahlen und Belohnungsmodulen",
+            "f3": "Automatisierte Stats-Logger und Map-Abstimmungssysteme"
+          }
+        }
       }
     }
   },
@@ -130,7 +205,7 @@
   },
   "notification": {
     "title": "Benachrichtigung",
-    "message": "Dies ist eine Beispielbenachrichtigung. Sie können diesen Inhalt nach Ihren Bedürfnissen aktualisieren."
+    "messagePrefix": "Der Quellcode ist öffentlich unter "
   }
 }
 
