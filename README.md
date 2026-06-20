@@ -265,7 +265,7 @@ Dự án này được phân phối dưới giấy phép MIT. Xem file `LICENSE`
 
 **zhw1nq**
 
-- Website: [vhming.com](https://vhming.com)
+- Website: [vhming.dev](https://vhming.dev)
 - GitHub: [@zhw1nq](https://github.com/zhw1nq)
 - Email: zhw1nq@gmail.com
 
@@ -282,7 +282,7 @@ Dự án này được phân phối dưới giấy phép MIT. Xem file `LICENSE`
 Nếu có bất kỳ câu hỏi nào, vui lòng:
 - Mở một [Issue](https://github.com/zhw1nq/website/issues)
 - Gửi email: zhw1nq@gmail.com
-- Truy cập trang [Contact](https://vhming.com/me/contact)
+- Truy cập trang [Contact](https://vhming.dev/me/contact)
 
 ---
 

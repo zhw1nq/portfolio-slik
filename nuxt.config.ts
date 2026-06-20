@@ -45,8 +45,8 @@ export default defineNuxtConfig({
     [
       "@nuxtjs/color-mode",
       {
-        preference: "system",
-        fallback: "light",
+        preference: "dark",
+        fallback: "dark",
         hid: "nuxt-color-mode-script",
         classSuffix: "",
         storageKey: "color-mode",
@@ -110,14 +110,14 @@ export default defineNuxtConfig({
   sitemap: {},
 
   site: {
-    url: "https://vhming.com",
-    name: "vhming.com",
+    url: "https://vhming.dev",
+    name: "vhming.dev",
   },
 
   pwa: {
     manifest: {
-      name: "vhming.com",
-      short_name: "vhming.com",
+      name: "vhming.dev",
+      short_name: "vhming.dev",
       theme_color: "#f56565",
       description:
         "Professional JavaScript developer from Turkey specializing in React.js, Vue.js, TypeScript, Node.js, and Flutter. Passionate about crafting innovative software solutions and continuously improving programming skills.",
@@ -136,8 +136,8 @@ export default defineNuxtConfig({
     public: {
       social: {
         github: "https://github.com/zhw1nq",
-        email: "vhming@zhw1nq.com",
-        emailAlt: "hi@vhming.com",
+        email: "vhming@vhming.dev",
+        emailAlt: "hi@vhming.dev",
         phone: "+84 876.7878.32",
         discord: "@vhming_",
       },
