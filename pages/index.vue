@@ -16,9 +16,19 @@ const cards = computed(() => [
     icon: "line-md:github",
   },
   {
+    title: t("pages.community.title"),
+    href: "/me/community",
+    icon: "heroicons:user-group",
+  },
+  {
     title: t("pages.contact.title"),
     href: "/me/contact",
     icon: "line-md:at",
+  },
+  {
+    title: t("pages.jobs.title"),
+    href: "/me/jobs",
+    icon: "line-md:briefcase-twotone",
   },
   {
     title: t("pages.songs.title"),
@@ -56,31 +66,48 @@ const gameDesignIcons = [
   { name: 'Adobe Photoshop', class: 'devicon-photoshop-plain' },
 ]
 
-useHead({
-  title: "Trang chủ",
-})
+const { $prepareMeta } = useNuxtApp()
+
+useHead(() => ({
+  title: t("pages.home.title"),
+  meta: $prepareMeta({
+    title: t("pages.home.title"),
+    description: t("footer.company.description"),
+  }),
+}))
 </script>
 
 <template>
   <div
     class="min-h-[calc(100vh-8rem)] md:min-h-[calc(100vh-11rem)] flex flex-col py-8 sm:py-12 md:my-0 items-center justify-center relative w-full">
     <ClientOnly>
-      <!-- Dark mode: nền đen, silk xám tím -->
-      <Silk v-if="colorMode.value === 'dark'" :speed="5" :scale="1" color="#7B7481" :noise-intensity="1.5"
-        :rotation="0" />
-      <!-- Light mode: nền trắng, silk đen tím -->
-      <SilkLight v-else :speed="5" :scale="1" color="#4A3F5C" :noise-intensity="1.5" :rotation="0" />
+      <!-- Floating Lines background (locked to dark mode) -->
+      <FloatingLines
+        :linesGradient="['#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff', '#d4baff', '#ffb3e6', '#ffb3ba']"
+        :enabledWaves="['top', 'middle', 'bottom']"
+        :lineCount="8"
+        :lineDistance="8"
+        :animationSpeed="1"
+        :bendRadius="8.0"
+        :bendStrength="-2.0"
+        :interactive="true"
+        :parallax="true"
+      />
+      <!-- <Silk v-if="colorMode.value === 'dark'" :speed="5" :scale="1" color="#7B7481" :noise-intensity="1.5"
+        :rotation="0" /> -->
+      <!-- <SilkLight v-else :speed="5" :scale="1" color="#4A3F5C" :noise-intensity="1.5" :rotation="0" /> -->
     </ClientOnly>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 flex items-center gap-8 lg:gap-16 relative z-10 w-full">
       <ClientOnly>
         <div class="hidden lg:flex flex-col gap-4 w-2/12 z-10">
-          <Card v-for="(card, index) in cards.slice(0, 2)" :key="`card-ml-${index}`" :title="card.title"
+          <Card v-for="(card, index) in cards.slice(0, 3)" :key="`card-ml-${index}`" :title="card.title"
             :href="card.href"
-            class="w-28 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
+            class="w-32 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
             :class="{
               'ml-auto': index % 2 === 0,
               'rotate-2': index === 0,
               '-rotate-3': index === 1,
+              'rotate-1': index === 2,
             }" :style="{
               aspectRatio: '1/1',
             }">
@@ -192,13 +219,14 @@ useHead({
 
       <ClientOnly>
         <div class="hidden lg:flex flex-col gap-4 w-2/12 z-10">
-          <Card v-for="(card, index) in cards.slice(2, 4)" :key="`card-mr-${index}`" :title="card.title"
+          <Card v-for="(card, index) in cards.slice(3, 6)" :key="`card-mr-${index}`" :title="card.title"
             :href="card.href"
-            class="w-28 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
+            class="w-32 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
             :class="{
               'ml-auto': index % 2 !== 0,
               '-rotate-2': index === 0,
               'rotate-3': index === 1,
+              '-rotate-1': index === 2,
             }" :style="{
               aspectRatio: '1/1',
             }">
