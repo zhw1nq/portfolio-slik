@@ -254,7 +254,7 @@ onUnmounted(() => {
               © 2007 - Present. All rights reserved.
             </p>
             <p class="text-black/60 dark:text-white/60 text-[10px] sm:text-xs leading-relaxed">
-              zhw1nq/vhming.com
+              zhw1nq/vhming.dev
             </p>
           </template>
         </ClientOnly>

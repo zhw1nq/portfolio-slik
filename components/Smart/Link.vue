@@ -21,7 +21,7 @@ const isInternalPage = computed((): boolean => {
 const getUtmLink = computed((): string => {
   try {
     const url = new URL(props.href)
-    url.searchParams.append("utm_source", "vhming.com")
+    url.searchParams.append("utm_source", "vhming.dev")
 
     return url.href
   } catch (err) {

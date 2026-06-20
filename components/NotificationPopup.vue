@@ -1,47 +1,65 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { ref, onMounted } from 'vue'
 
 const { t } = useI18n()
-const isVisible = ref(true)
+const isVisible = ref(false)
 
-const dismissMessage = () => {
-  isVisible.value = false
-}
+onMounted(() => {
+  // Trigger slide down entry animation shortly after mount
+  setTimeout(() => {
+    isVisible.value = true
+  }, 300)
+
+  // Automatically slide up and hide after 4.8 seconds
+  setTimeout(() => {
+    isVisible.value = false
+  }, 4800)
+})
 </script>
 
 <template>
-  <Transition name="fade" mode="out-in">
+  <Transition name="notification-slide">
     <div
       v-if="isVisible"
-      class="fixed inset-x-0 w-11/12 p-4 mx-auto space-y-1 rounded-lg shadow-md select-none bottom-4 lg:w-1/4 ring-1 ring-white/10 dark:ring-white/20 lg:mx-0 lg:left-4 background-when-supports z-20"
+      class="notification-popup w-11/12 sm:max-w-md p-4 space-y-1 rounded-lg shadow-md select-none ring-1 ring-white/10 dark:ring-white/20 background-when-supports"
     >
-      <div class="flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
         <ClientOnly>
-          <h3 class="font-medium leading-tight dark:text-white">
-            📢 {{ t("notification.title") }}
+          <h3 class="font-medium leading-tight dark:text-white flex items-center gap-2">
+            <Icon name="heroicons:bell" class="w-5 h-5" />
+            {{ t("notification.title") }}
           </h3>
           <template #fallback>
-            <h3 class="font-medium leading-tight dark:text-white">
-              📢 Notification
+            <h3 class="font-medium leading-tight dark:text-white flex items-center gap-2">
+              <Icon name="heroicons:bell" class="w-5 h-5" />
+              Notification
             </h3>
           </template>
         </ClientOnly>
-
-        <button
-          class="p-1 transition-colors rounded-full hover:bg-black/20 dark:hover:bg-white/20 bg-black/10 dark:bg-white/10 dark:text-white"
-          @click="dismissMessage"
-        >
-          <Icon name="mdi:times" class="w-3 h-3" />
-        </button>
       </div>
 
       <ClientOnly>
         <p class="text-sm light:opacity-50 dark:text-white/50">
-          {{ t("notification.message") }}
+          {{ t("notification.messagePrefix") }}
+          <SmartLink
+            href="https://github.com/zhw1nq/portfolio-slik"
+            blank
+            class="underline hover:text-black dark:hover:text-white transition-colors"
+          >
+            github.com/zhw1nq/portfolio-slik
+          </SmartLink>
         </p>
         <template #fallback>
           <p class="text-sm light:opacity-50 dark:text-white/50">
-            This is a sample notification.
+            The source code is public at
+            <SmartLink
+              href="https://github.com/zhw1nq/portfolio-slik"
+              blank
+              class="underline hover:text-black dark:hover:text-white transition-colors"
+            >
+              github.com/zhw1nq/portfolio-slik
+            </SmartLink>
           </p>
         </template>
       </ClientOnly>
@@ -50,6 +68,14 @@ const dismissMessage = () => {
 </template>
 
 <style lang="scss" scoped>
+.notification-popup {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%, 0) scale(1);
+  z-index: 9999;
+}
+
 .background-when-supports {
   @apply backdrop-blur-md backdrop-filter bg-white/70 dark:bg-neutral-900;
 }
@@ -58,5 +84,18 @@ const dismissMessage = () => {
   .background-when-supports {
     @apply backdrop-blur-md backdrop-filter bg-white/30 dark:bg-neutral-800/30;
   }
+}
+
+/* inOutCirc / easeInOutCirc Transition */
+.notification-slide-enter-active {
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+}
+.notification-slide-leave-active {
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+}
+.notification-slide-enter-from,
+.notification-slide-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -40px) scale(0.9);
 }
 </style>

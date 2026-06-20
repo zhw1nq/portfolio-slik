@@ -25,7 +25,7 @@ const getTargetLink = computed(() => {
         </SmartLink>
 
         <div class="flex space-x-1.5 sm:space-x-2 items-center">
-          <ColorSwitcher />
+          <!-- <ColorSwitcher /> -->
           <ClientOnly>
             <LanguageSwitcher />
             <template #fallback>

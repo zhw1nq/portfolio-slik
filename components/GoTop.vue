@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
         icon="heroicons:chevron-up"
         @click="goTop"
       />
-      <ColorSwitcher class="hidden md:flex" />
+      <!-- <ColorSwitcher class="hidden md:flex" /> -->
       <ClientOnly>
         <LanguageSwitcher class="hidden md:flex" drop-up />
       </ClientOnly>

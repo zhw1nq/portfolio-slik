@@ -77,6 +77,11 @@ onMounted(() => {
   }
 })
 
+const isGlobalLoading = useState('globalLoading')
+watch(status, (newStatus) => {
+  isGlobalLoading.value = newStatus === 'pending'
+}, { immediate: true })
+
 // Computed to check if we have valid data
 const hasData = computed(() => {
   return spotify.value && spotify.value.user && !spotify.value.notConfigured

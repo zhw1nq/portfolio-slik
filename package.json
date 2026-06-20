@@ -2,7 +2,7 @@
   "private": true,
   "license": "MIT",
   "version": "7.0.0",
-  "homepage": "https://vhming.com",
+  "homepage": "https://vhming.dev",
   "readme": "https://github.com/zhw1nq/website#readme",
   "engines": {
     "node": ">=18"
@@ -10,7 +10,7 @@
   "author": {
     "name": "zhw1nq",
     "email": "zhw1nq@gmail.com",
-    "url": "https://vhming.com"
+    "url": "https://vhming.dev"
   },
   "bugs": {
     "email": "zhw1nq@gmail.com",
@@ -23,7 +23,7 @@
   "funding": [
     {
       "type": "individual",
-      "url": "https://vhming.com/me/donate"
+      "url": "https://vhming.dev/me/donate"
     },
     {
       "type": "github",

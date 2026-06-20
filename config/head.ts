@@ -1,10 +1,10 @@
 /* Define constants */
-const image = "https://vhming.com/myLogo.svg"
+const image = "https://vhming.dev/myLogo.svg"
 const description =
-  "Professional JavaScript developer from Turkey specializing in React.js, Vue.js, TypeScript, Node.js, and Flutter. Passionate about crafting innovative software solutions and continuously improving programming skills."
+  "A passionate full-stack developer and game designer, also the owner of vhming.dev, crafting digital experiences with modern web technologies and creative design."
 
 const head = {
-  title: "vhming.com",
+  title: "vhming.dev",
   meta: [
     { charset: "utf-8" },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -12,6 +12,21 @@ const head = {
       hid: "description",
       name: "description",
       content: description,
+    },
+    {
+      hid: "keywords",
+      name: "keywords",
+      content: "vhming, vhming.dev, fullstack developer, game designer, portfolio, web developer, game developer, UI/UX designer, Nuxt, Vue, Three.js",
+    },
+    {
+      hid: "author",
+      name: "author",
+      content: "vhming",
+    },
+    {
+      hid: "robots",
+      name: "robots",
+      content: "index, follow",
     },
     /* Twitter */
     {
@@ -32,7 +47,7 @@ const head = {
     {
       hid: "twitter:title",
       name: "twitter:title",
-      content: "vhming.com",
+      content: "vhming.dev",
     },
     {
       hid: "twitter:description",
@@ -51,9 +66,19 @@ const head = {
       content: "website",
     },
     {
+      hid: "og:url",
+      name: "og:url",
+      content: "https://vhming.dev",
+    },
+    {
+      hid: "og:locale",
+      name: "og:locale",
+      content: "vi_VN",
+    },
+    {
       hid: "og:site_name",
       name: "og:site_name",
-      content: "vhming.com",
+      content: "vhming.dev",
     },
     {
       hid: "og:description",
@@ -80,7 +105,7 @@ const head = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "https://vhming.com/assets/icons/icon.ico",
+      href: "https://vhming.dev/assets/icons/icon.ico",
     },
     {
       rel: "stylesheet",

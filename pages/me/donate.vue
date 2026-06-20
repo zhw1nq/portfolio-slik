@@ -11,12 +11,12 @@ useHead(() => ({
     title: t("pages.donate.title"),
     description: t("pages.donate.metaDescription"),
     keywords: "donate",
-    url: "https://vhming.com/me/donate",
+    url: "https://vhming.dev/me/donate",
   }),
   link: [
     {
       rel: "canonical",
-      href: "https://vhming.com/me/donate",
+      href: "https://vhming.dev/me/donate",
     },
   ],
 }))

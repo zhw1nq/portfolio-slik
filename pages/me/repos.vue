@@ -31,6 +31,11 @@ useHead(() => ({
     description: t("pages.repos.metaDescription"),
   }),
 }))
+
+const isGlobalLoading = useState('globalLoading')
+watch(status, (newStatus) => {
+  isGlobalLoading.value = newStatus === 'pending'
+}, { immediate: true })
 </script>
 
 <template>

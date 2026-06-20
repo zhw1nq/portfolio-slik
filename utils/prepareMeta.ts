@@ -17,12 +17,15 @@ export interface IMeta {
 
 const defaultKeywords = [
   "technology",
-  "turkish",
   "developer",
   "portfolio",
   "vue",
   "nuxt",
   "tailwindcss",
+  "game design",
+  "fullstack",
+  "vhming",
+  "vhming.dev"
 ]
 
 /**
