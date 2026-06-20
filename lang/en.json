@@ -94,6 +94,81 @@
       "platforms": {
         "title": "Support on Platforms"
       }
+    },
+    "jobs": {
+      "title": "Career",
+      "description": "My professional career and work history.",
+      "metaTitle": "Career",
+      "metaDescription": "My professional career and work history.",
+      "items": {
+        "neverlose": {
+          "role": "Software Developer",
+          "company": "neverlose.cc",
+          "desc": "Software development and system optimization."
+        },
+        "sevenColor": {
+          "role": "Admin Developer",
+          "company": "7 Màu Community",
+          "desc": "Administrator and community developer."
+        },
+        "hvhfl": {
+          "role": "Build Server Guangdong",
+          "company": "hvhfl.cn",
+          "desc": "Setting up and operating Guangdong regional servers."
+        },
+        "phyddoser": {
+          "role": "System Administration",
+          "company": "Phy DDoser",
+          "desc": "System administrator for network and infrastructure."
+        },
+        "vnsserver": {
+          "role": "Network Security Technician",
+          "company": "VNS Server",
+          "desc": "Network security technician."
+        }
+      }
+    },
+    "community": {
+      "title": "Community",
+      "description": "Communities I have built and contributed to.",
+      "metaTitle": "Community",
+      "metaDescription": "Communities I have built and contributed to.",
+      "items": {
+        "sevenmau": {
+          "name": "7-mau.com",
+          "role": "Vietnamese CS2 Server Community",
+          "desc": "Built and managed the largest CS2 game server community in Vietnam. Configured servers, optimized performance, administered game modes, and fostered an active community of players.",
+          "f1": "Diverse Game Server Infrastructure: Host high-performance Retakes, PUG, Duel, 1v1 game modes on optimized tickrates",
+          "f2": "10K+ Community Engagement: Developed and managed an active Discord and social group connecting gamers daily",
+          "f3": "Automated Integrations: Synchronized in-game Skin Changer, Rank, VIP status, and shop features",
+          "f4": "Low Latency Networking: Servers hosted in top Vietnamese datacenters protected by custom anti-cheat shields"
+        },
+        "zsystems": {
+          "name": "zSystems",
+          "role": "All-In-One (AIO) Web Platform",
+          "desc": "AIO web dashboard integrated stats tracker, player leaderboard, ban/mute logs, online store, and automated donation checkout system for 7-Màu servers.",
+          "f1": "Modern user interface optimized for mobile layout",
+          "f2": "Integrated Source Query API for real-time stats & leaderboards",
+          "f3": "Bi-directional sync of Ban/Mute/Kick records directly with CS2 server",
+          "f4": "Integrated VIPCore system"
+        },
+        "ntmg": {
+          "name": "NTMG (Nhà trẻ Mèo Giặt)",
+          "role": "Code Contributor",
+          "desc": "Focused exclusively on web optimization and source code refactoring under robust international standards.",
+          "f1": "Optimize web performance and architecture structure",
+          "f2": "Refactor and maintain source code matching global industry standards",
+          "f3": "Ensure robust security protocols and maximum scalability"
+        },
+        "swiftly": {
+          "name": "SwiftlyS2 Plugins",
+          "role": "Plugin Developer",
+          "desc": "Authored high-performance, customized server plugins using the SwiftlyS2 Framework to deliver unique gameplay features for game servers.",
+          "f1": "Optimized custom gameplay extensions using SwiftlyS2 C# APIs",
+          "f2": "Designed VIP management, custom skin selectors, and rewards modules",
+          "f3": "Automated stats loggers and map voting systems"
+        }
+      }
     }
   },
   "footer": {
@@ -102,13 +177,13 @@
     "links": "Links",
     "legal": "Legal",
     "company": {
-      "name": "vhming.com",
+      "name": "vhming.dev",
       "description": "A passionate full-stack developer and game designer, crafting digital experiences with modern web technologies and creative design.",
       "email": "Email",
       "phone": "Phone",
       "github": "GitHub",
       "copyright": "© 2007 - Present. All rights reserved.",
-      "website": "zhw1nq/vhming.com",
+      "website": "zhw1nq/vhming.dev",
       "locationVN": "Mong Cai Ward 1, Quang Ninh Province, Vietnam",
       "locationCN": "Dongxing, Guangxi, China",
       "timezoneUTC7": "UTC+7",
@@ -130,7 +205,7 @@
   },
   "notification": {
     "title": "Notification",
-    "message": "This is a sample notification. You can update this content according to your needs."
+    "messagePrefix": "The source code is public at "
   }
 }
 

@@ -94,6 +94,81 @@
       "platforms": {
         "title": "Ủng Hộ Trên Các Nền Tảng"
       }
+    },
+    "jobs": {
+      "title": "Sự nghiệp",
+      "description": "Dự án và quá trình hoạt động của tôi.",
+      "metaTitle": "Sự nghiệp",
+      "metaDescription": "Dự án và quá trình hoạt động của tôi.",
+      "items": {
+        "neverlose": {
+          "role": "Software Developer",
+          "company": "neverlose.cc",
+          "desc": "Phát triển phần mềm và tối ưu hóa hệ thống."
+        },
+        "sevenColor": {
+          "role": "Admin Developer",
+          "company": "7 Màu Community",
+          "desc": "Quản trị viên kiêm lập trình viên phát triển cộng đồng."
+        },
+        "hvhfl": {
+          "role": "Build Server Guangdong",
+          "company": "hvhfl.cn",
+          "desc": "Thiết lập và vận hành máy chủ khu vực Quảng Đông."
+        },
+        "phyddoser": {
+          "role": "System Administration",
+          "company": "Phy DDoser",
+          "desc": "Quản trị viên hệ thống mạng và hạ tầng."
+        },
+        "vnsserver": {
+          "role": "Network Security Technician",
+          "company": "VNS Server",
+          "desc": "Kỹ thuật viên an ninh mạng."
+        }
+      }
+    },
+    "community": {
+      "title": "Community",
+      "description": "Các cộng đồng tôi đã xây dựng và đóng góp phát triển.",
+      "metaTitle": "Community",
+      "metaDescription": "Các cộng đồng tôi đã xây dựng và đóng góp phát triển.",
+      "items": {
+        "sevenmau": {
+          "name": "7-mau.com",
+          "role": "Cộng đồng máy chủ CS2 Việt Nam",
+          "desc": "Xây dựng và phát triển cộng đồng máy chủ game Counter-Strike 2 lớn nhất Việt Nam. Cấu hình hệ thống server, tối ưu hóa hiệu năng, vận hành các chế độ chơi và phát triển cộng đồng người chơi năng động.",
+          "f1": "Hạ tầng Game Server đa dạng: Vận hành các chế độ chơi chất lượng cao Retakes, PUG, Duel, 1v1 trên tickrate tối ưu",
+          "f2": "Kết nối cộng đồng 10K+ thành viên: Phát triển và quản trị hệ thống Discord, Group gắn kết game thủ sôi nổi",
+          "f3": "Tích hợp tính năng tự động: Đồng bộ hóa hệ thống Skin Changer, Rank, VIP và cửa hàng tiện lợi",
+          "f4": "Hạ tầng mạng độ trễ thấp: Máy chủ đặt tại Datacenter hàng đầu Việt Nam kèm hệ thống bảo vệ chống gian lận"
+        },
+        "zsystems": {
+          "name": "zSystems",
+          "role": "Website All-In-One (AIO)",
+          "desc": "Hệ thống web dashboard AIO tích hợp theo dõi thông số, bảng xếp hạng, lịch sử ban/mute, cửa hàng và cổng thanh toán tự động cho hệ thống máy chủ 7-Màu.",
+          "f1": "Giao diện hiện đại, tối ưu hóa cho cả thiết bị di động",
+          "f2": "Tích hợp API truy vấn thời gian thực chỉ số người chơi & Xếp hạng",
+          "f3": "Đồng bộ hóa dữ liệu Ban/Mute/Kick trực tiếp với server CS2",
+          "f4": "Tích hợp hệ thống VIPCore"
+        },
+        "ntmg": {
+          "name": "NTMG (Nhà trẻ Mèo Giặt)",
+          "role": "Đóng góp phát triển (Contributor)",
+          "desc": "Chỉ tập trung tối ưu hóa hệ thống web và sửa đổi mã nguồn dựa trên các quy chuẩn quốc tế mạnh mẽ hơn.",
+          "f1": "Tối ưu hóa hiệu năng và cấu trúc hệ thống web",
+          "f2": "Sửa chữa, tái cấu trúc mã nguồn theo quy chuẩn quốc tế",
+          "f3": "Đảm bảo tính bảo mật và khả năng mở rộng tối đa"
+        },
+        "swiftly": {
+          "name": "SwiftlyS2 Plugins",
+          "role": "Lập trình viên Plugin",
+          "desc": "Thiết kế và lập trình các gói mở rộng (plugins) tùy biến hiệu năng cao trên nền tảng SwiftlyS2 Framework để cung cấp tính năng độc đáo cho cộng đồng game.",
+          "f1": "Tối ưu hiệu suất tối đa dựa trên framework SwiftlyS2 mới",
+          "f2": "Phát triển hệ thống quản lý VIP, skin và quà tặng độc quyền",
+          "f3": "Tự động hóa hệ thống thống kê trận đấu & bản đồ bình chọn"
+        }
+      }
     }
   },
   "footer": {
@@ -102,13 +177,13 @@
     "links": "Liên kết",
     "legal": "Pháp lý",
     "company": {
-      "name": "vhming.com",
+      "name": "vhming.dev",
       "description": "Lập trình viên full-stack và nhà thiết kế game đam mê, tạo ra những trải nghiệm số với công nghệ web hiện đại và thiết kế sáng tạo.",
       "email": "Email",
       "phone": "Điện thoại",
       "github": "GitHub",
       "copyright": "© 2007 - Hiện tại. Bảo lưu mọi quyền.",
-      "website": "zhw1nq/vhming.com",
+      "website": "zhw1nq/vhming.dev",
       "locationVN": "Phường Móng Cái 1, Tỉnh Quảng Ninh, Việt Nam",
       "locationCN": "Đông Hưng, Quảng Tây, Trung Quốc",
       "timezoneUTC7": "UTC+7",
@@ -130,6 +205,6 @@
   },
   "notification": {
     "title": "Thông báo",
-    "message": "Đây là thông báo mẫu. Bạn có thể cập nhật nội dung này theo nhu cầu của mình."
+    "messagePrefix": "Mã nguồn được public tại "
   }
 }
