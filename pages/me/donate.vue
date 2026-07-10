@@ -24,14 +24,6 @@ useHead(() => ({
 // Bank options - logo từ local SVG
 const banks = [
   {
-    id: 'TCB',
-    name: 'Techcombank',
-    shortName: 'TCB',
-    accountNumber: '3110311099',
-    accountName: 'VU GIA MINH',
-    logo: '/assets/icons/TCB.svg'
-  },
-  {
     id: 'MB',
     name: 'MB Bank',
     shortName: 'MB',
