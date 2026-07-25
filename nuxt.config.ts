@@ -249,7 +249,9 @@ export default defineNuxtConfig({
     ],
   ],
 
-  sitemap: {},
+  sitemap: {
+    autoLastmod: false,
+  },
 
   site: {
     url: "https://vhming.dev",

@@ -67,7 +67,7 @@ onUnmounted(() => {
           <ClientOnly>
             <h3
               class="font-semibold text-black/90 dark:text-white/90 text-sm sm:text-base uppercase tracking-wide mb-3">
-              {{ t('footer.company.name').toUpperCase() }}
+              {{ t('footer.company.name', { domain: currentDomain }).toUpperCase() }}
             </h3>
             <template #fallback>
               <h3
