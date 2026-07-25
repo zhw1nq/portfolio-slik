@@ -71,15 +71,14 @@ const countryToLocale: Record<string, string> = {
  */
 async function detectLocaleFromIP(): Promise<string | null> {
   try {
-    // Using ip-api.com (free, no API key needed, 45 requests/minute)
-    const response = await fetch('http://ip-api.com/json/?fields=countryCode', {
-      signal: AbortSignal.timeout(3000) // 3 second timeout
+    const response = await fetch('https://ipwho.is/', {
+      signal: AbortSignal.timeout(3000)
     })
     
     if (!response.ok) return null
     
     const data = await response.json()
-    const countryCode = data.countryCode
+    const countryCode = data.country_code
     
     if (countryCode && countryToLocale[countryCode]) {
       return countryToLocale[countryCode]
@@ -136,17 +135,20 @@ export default defineNuxtPlugin(({ vueApp, ssrContext }) => {
   // Get initial locale from cookie (SSR) or localStorage (client)
   let initialLocale = 'en'
   
-  if (process.server && ssrContext?.event) {
-    // Read locale from cookie in SSR
-    const cookieLocale = useCookie('user-locale', {
-      default: () => 'en',
-      sameSite: 'lax',
-      secure: true,
-      httpOnly: false
-    }).value
-    
-    if (cookieLocale && supportedLocales.includes(cookieLocale)) {
-      initialLocale = cookieLocale
+  if (process.server) {
+    try {
+      const cookieLocale = useCookie('user-locale', {
+        default: () => 'en',
+        sameSite: 'lax',
+        secure: true,
+        httpOnly: false
+      }).value
+      
+      if (cookieLocale && supportedLocales.includes(cookieLocale)) {
+        initialLocale = cookieLocale
+      }
+    } catch {
+      initialLocale = 'en'
     }
   } else if (process.client) {
     // Check localStorage on client

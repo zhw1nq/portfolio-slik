@@ -127,10 +127,6 @@ const siteHead = {
 }
 
 export default defineNuxtConfig({
-  experimental: {
-    appManifest: false,
-  },
-
   nitro: {
     preset: nitroPreset,
     experimental: {
@@ -152,21 +148,6 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    plugins: [
-      {
-        name: "resolve-app-manifest-fallback",
-        resolveId(id: string) {
-          if (id === "#app-manifest" || id === "\0#app-manifest") {
-            return "\0#app-manifest"
-          }
-        },
-        load(id: string) {
-          if (id === "\0#app-manifest") {
-            return "export default {}"
-          }
-        },
-      },
-    ],
     optimizeDeps: {
       include: ["vue-i18n", "vue-tippy", "medium-zoom"],
       exclude: process.env.NODE_ENV === "development" ? ["@nuxtjs/google-fonts"] : [],
@@ -198,9 +179,7 @@ export default defineNuxtConfig({
       "@nuxt/icon",
       {
         serverBundle: {
-          collections: process.env.NODE_ENV === "production"
-            ? ["heroicons", "line-md", "mdi", "svg-spinners", "devicon"]
-            : ["heroicons", "line-md", "mdi"],
+          collections: ["heroicons", "line-md", "mdi", "svg-spinners", "devicon"],
         },
       },
     ],
@@ -259,6 +238,10 @@ export default defineNuxtConfig({
   },
 
   pwa: {
+    registerType: "autoUpdate",
+    workbox: {
+      navigateFallback: undefined,
+    },
     manifest: {
       name: "vhming.dev",
       short_name: "vhming.dev",
