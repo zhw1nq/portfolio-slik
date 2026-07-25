@@ -17,6 +17,7 @@ const email = config.public?.social?.email || ''
 const emailAlt = config.public?.social?.emailAlt || ''
 const phone = config.public?.social?.phone || ''
 const githubUrl = config.public?.social?.github || ''
+const facebookUrl = config.public?.social?.facebook || ''
 const discordUsername = config.public?.social?.discord || ''
 const discordUserId = config.public?.discord?.userId || ''
 
@@ -100,6 +101,17 @@ onUnmounted(() => {
 
           <span class="text-black/50 dark:text-white/30 text-xs sm:text-sm break-all">
             {{ githubUrl.replace('https://', '') }}
+          </span>
+        </Card>
+
+        <!-- Facebook -->
+        <Card v-if="facebookUrl" title="Facebook" :href="facebookUrl" blank>
+          <template #icon>
+            <Icon name="line-md:facebook" class="h-7 w-7 sm:h-9 sm:w-9" />
+          </template>
+
+          <span class="text-black/50 dark:text-white/30 text-xs sm:text-sm break-all">
+            {{ facebookUrl.replace('https://', '') }}
           </span>
         </Card>
 

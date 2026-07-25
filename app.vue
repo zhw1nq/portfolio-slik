@@ -1,20 +1,57 @@
 <script setup lang="ts">
+import { gsap } from 'gsap'
+
 const colorMode = useColorMode()
 const isProduction = import.meta.env.PROD
+const { domain } = useCurrentDomain()
+const route = useRoute()
+const router = useRouter()
+const nuxtApp = useNuxtApp()
+
+const isHomePage = computed(() => route.path === '/')
 
 useHead(() => {
-  let string = "vhming.dev"
+  const currentDomain = domain.value || "vhming.dev"
 
   return {
-    titleTemplate: `%s - ${string}`,
+    titleTemplate: `%s - ${currentDomain}`,
     htmlAttrs: {
-      class: `min-h-screen ${colorMode.preference} ${colorMode.value}`,
+      class: `min-h-screen bg-neutral-900 ${colorMode.preference} ${colorMode.value}`,
+    },
+    bodyAttrs: {
+      class: 'bg-neutral-900 text-white min-h-screen',
     },
     meta: [
       {
         hid: "og:site_name",
         name: "og:site_name",
-        content: string,
+        content: currentDomain,
+      },
+      {
+        hid: "og:image",
+        name: "og:image",
+        content: "/logo.png",
+      },
+      {
+        hid: "twitter:image",
+        name: "twitter:image",
+        content: "/logo.png",
+      },
+    ],
+    link: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/logo.png",
+      },
+      {
+        rel: "shortcut icon",
+        type: "image/png",
+        href: "/logo.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "/logo.png",
       },
     ],
   }
@@ -23,111 +60,184 @@ useHead(() => {
 // Route & fetch loading states
 const routeLoading = ref(false)
 const isGlobalLoading = useState('globalLoading', () => false)
+const showLoadingBar = computed(() => routeLoading.value || isGlobalLoading.value)
 
-const router = useRouter()
+const loadingBarRef = ref<HTMLElement | null>(null)
+const isBarVisible = ref(false)
+let currentTween: gsap.core.Tween | null = null
+
+const startLoading = () => {
+  isBarVisible.value = true
+  nextTick(() => {
+    const el = loadingBarRef.value
+    if (!el) return
+    if (currentTween) currentTween.kill()
+
+    gsap.set(el, { scaleX: 0, transformOrigin: 'left center', opacity: 1 })
+    currentTween = gsap.to(el, {
+      scaleX: 1,
+      duration: 0.85,
+      ease: 'circ.inOut',
+    })
+  })
+}
+
+const finishLoading = () => {
+  const el = loadingBarRef.value
+  if (!el) {
+    isBarVisible.value = false
+    return
+  }
+  
+  if (currentTween) currentTween.kill()
+  
+  gsap.to(el, {
+    scaleX: 1,
+    duration: 0.25,
+    ease: 'circ.out',
+    onComplete: () => {
+      if (!loadingBarRef.value) return
+      gsap.to(loadingBarRef.value, {
+        opacity: 0,
+        duration: 0.35,
+        ease: 'circ.inOut',
+        onComplete: () => {
+          isBarVisible.value = false
+          if (loadingBarRef.value) {
+            gsap.set(loadingBarRef.value, { scaleX: 0, opacity: 1 })
+          }
+        }
+      })
+    }
+  })
+}
+
+// Router loading state hooks
+nuxtApp.hook('page:start', () => { routeLoading.value = true })
+nuxtApp.hook('page:finish', () => {
+  setTimeout(() => { routeLoading.value = false }, 300)
+})
+
 router.beforeEach((to, from, next) => {
   routeLoading.value = true
   next()
 })
 router.afterEach(() => {
-  setTimeout(() => {
-    routeLoading.value = false
-  }, 400)
+  setTimeout(() => { routeLoading.value = false }, 300)
 })
 
-onMounted(() => {
-  routeLoading.value = true
-  setTimeout(() => {
-    routeLoading.value = false
-  }, 600)
-})
+const isIntroComplete = useState('introComplete', () => false)
 
-const showLoadingBar = computed(() => routeLoading.value || isGlobalLoading.value)
+const handleIntroComplete = () => {
+  isIntroComplete.value = true
+  if (process.client) {
+    const el = document.getElementById('page-elements')
+    if (el) {
+      gsap.to(el, {
+        opacity: 1,
+        visibility: 'visible',
+        duration: 0.8,
+        ease: 'power2.out',
+      })
+    }
+  }
+}
+
+watch(showLoadingBar, (newVal) => {
+  if (newVal) {
+    startLoading()
+  } else {
+    finishLoading()
+  }
+}, { immediate: true })
 </script>
 
 <template>
-  <!-- Locked to dark mode background (light mode bg-gray-50 is commented/disabled) -->
-  <div class="min-h-screen bg-neutral-900 relative">
-    <!-- Custom Glowing Top Loading Bar -->
-    <Transition name="fade-loading">
-      <div v-if="showLoadingBar"
-        class="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-500 via-indigo-500 via-purple-500 to-pink-500 z-[9999] shadow-[0_2px_8px_rgba(99,102,241,0.6)] overflow-hidden">
-        <div class="h-full w-full bg-white/20 animate-loading-bar-top"></div>
-      </div>
-    </Transition>
-
-    <Navbar class="pt-10 relative z-20" />
-
-    <!-- Nuxt component -->
-    <main class="responsive-screen min-h-screen pb-12 sm:pb-16 md:pb-20 relative z-10">
-      <NuxtPage />
-    </main>
-
-    <!-- Footer -->
-    <Footer class="relative z-20" />
-
-    <!-- Go to top button -->
-    <GoTop />
-
-    <!-- Custom Dot Scrollbar -->
+  <div class="min-h-screen bg-neutral-900 relative overflow-hidden">
+    <!-- Ambient Floating Lines Background (Active ONLY on Home page) -->
     <ClientOnly>
-      <DotScrollbar />
+      <FloatingLines
+        v-if="isHomePage"
+        :linesGradient="['#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff', '#d4baff', '#ffb3e6', '#ffb3ba']"
+        :enabledWaves="['top', 'middle', 'bottom']"
+        :lineCount="8"
+        :lineDistance="8"
+        :animationSpeed="1"
+        :bendRadius="8.0"
+        :bendStrength="-2.0"
+        :interactive="true"
+        :parallax="true"
+      />
     </ClientOnly>
 
-    <!-- Notification Popup -->
-    <LazyNotificationPopup />
-
-    <!-- Other Components -->
+    <!-- Intro Preloader Animation -->
     <ClientOnly>
-      <component :is="'VitePwaManifest'" v-if="isProduction" />
+      <IntroPreloader @complete="handleIntroComplete" />
     </ClientOnly>
 
-    <!-- Custom Glowing Vertical Loading Bar on the Right -->
-    <Transition name="fade-loading">
-      <div v-if="showLoadingBar"
-        class="fixed right-0 top-0 bottom-0 w-[4px] bg-gradient-to-b from-blue-500 via-indigo-500 via-purple-500 to-pink-500 z-[9999] shadow-[-2px_0_8px_rgba(99,102,241,0.6)] overflow-hidden">
-        <div class="h-full w-full bg-white/20 animate-loading-bar"></div>
-      </div>
-    </Transition>
+    <!-- Custom GSAP Top Loading Bar -->
+    <div
+      v-show="isBarVisible"
+      class="fixed top-0 left-0 right-0 h-[3px] z-[9999] overflow-hidden pointer-events-none"
+    >
+      <div ref="loadingBarRef" class="h-full w-full rainbow-loading-bar"></div>
+    </div>
+
+    <!-- UI Elements Container (Hidden until preloader completes) -->
+    <div id="page-elements" class="opacity-0 invisible pointer-events-auto relative z-10">
+      <Navbar class="pt-10 relative z-20" />
+
+      <!-- Main Page View -->
+      <main class="responsive-screen min-h-screen pb-12 sm:pb-16 md:pb-20 relative z-10">
+        <NuxtPage />
+      </main>
+
+      <!-- Footer -->
+      <Footer class="relative z-20" />
+
+      <!-- Go to Top Button -->
+      <GoTop />
+
+      <!-- Custom In-Web Modern Scrollbar -->
+      <ClientOnly>
+        <ModernScrollbar />
+      </ClientOnly>
+
+      <!-- Notification Popup -->
+      <LazyNotificationPopup />
+
+      <!-- PWA Manifest -->
+      <ClientOnly>
+        <component :is="'VitePwaManifest'" v-if="isProduction" />
+      </ClientOnly>
+    </div>
   </div>
 </template>
 
 <style>
-@keyframes loadingBarAnimation {
+.rainbow-loading-bar {
+  background: linear-gradient(
+    90deg,
+    #ffb3ba 0%,
+    #ffdfba 14.28%,
+    #ffffba 28.57%,
+    #baffc9 42.85%,
+    #bae1ff 57.14%,
+    #c7ceea 71.42%,
+    #e8baff 85.71%,
+    #ffb3ba 100%
+  );
+  background-size: 200% 100%;
+  animation: rainbowFlow 3s linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes rainbowFlow {
   0% {
-    transform: translateY(-100%);
+    background-position: 0% 0%;
   }
-
   100% {
-    transform: translateY(100%);
+    background-position: 200% 0%;
   }
-}
-
-@keyframes loadingBarAnimationTop {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.animate-loading-bar {
-  animation: loadingBarAnimation 1.5s infinite linear;
-}
-
-.animate-loading-bar-top {
-  animation: loadingBarAnimationTop 1.5s infinite linear;
-}
-
-.fade-loading-enter-active,
-.fade-loading-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-loading-enter-from,
-.fade-loading-leave-to {
-  opacity: 0;
 }
 </style>

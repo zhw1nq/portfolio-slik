@@ -5,18 +5,21 @@ const { $config, $prepareMeta } = useNuxtApp()
 
 const { t } = useI18n()
 
+const requestUrl = useRequestURL()
+const currentUrl = computed(() => requestUrl.href || '/me/donate')
+
 useHead(() => ({
   title: t("pages.donate.title"),
   meta: $prepareMeta({
     title: t("pages.donate.title"),
     description: t("pages.donate.metaDescription"),
     keywords: "donate",
-    url: "https://vhming.dev/me/donate",
+    url: currentUrl.value,
   }),
   link: [
     {
       rel: "canonical",
-      href: "https://vhming.dev/me/donate",
+      href: currentUrl.value,
     },
   ],
 }))

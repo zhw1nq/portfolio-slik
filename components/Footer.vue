@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 const config = useRuntimeConfig()
 const { t } = useI18n()
 const colorMode = useColorMode()
+const { domain: currentDomain } = useCurrentDomain()
 
 const discordUserId = config.public?.discord?.userId || ''
 const discordProfileUrl = computed(() => discordUserId ? `discord://users/${discordUserId}` : '')
@@ -18,6 +19,7 @@ const email = config.public?.social?.email || ''
 const emailAlt = config.public?.social?.emailAlt || ''
 const phone = config.public?.social?.phone || ''
 const githubUrl = config.public?.social?.github || ''
+const facebookUrl = config.public?.social?.facebook || ''
 const discordUsername = config.public?.social?.discord || ''
 
 // Real-time clock for timezones
@@ -124,6 +126,17 @@ onUnmounted(() => {
               <a :href="githubUrl" target="_blank" rel="noopener noreferrer"
                 class="border-b border-transparent hover:border-black/10 dark:hover:border-white/10 transition-colors">
                 {{ githubUrl.replace('https://', '') }}
+              </a>
+            </div>
+
+            <!-- Facebook -->
+            <div
+              v-if="facebookUrl"
+              class="flex items-center gap-2 text-black/70 dark:text-white/70 text-xs sm:text-sm break-all sm:break-normal">
+              <Icon name="line-md:facebook" class="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+              <a :href="facebookUrl" target="_blank" rel="noopener noreferrer"
+                class="border-b border-transparent hover:border-black/10 dark:hover:border-white/10 transition-colors">
+                {{ facebookUrl.replace('https://', '') }}
               </a>
             </div>
 
@@ -246,7 +259,7 @@ onUnmounted(() => {
               {{ t('footer.company.copyright') }}
             </p>
             <p class="text-black/60 dark:text-white/60 text-[10px] sm:text-xs leading-relaxed">
-              {{ t('footer.company.website') }}
+              {{ t('footer.company.website', { domain: currentDomain }) }}
             </p>
           </template>
           <template #fallback>
@@ -254,7 +267,7 @@ onUnmounted(() => {
               © 2007 - Present. All rights reserved.
             </p>
             <p class="text-black/60 dark:text-white/60 text-[10px] sm:text-xs leading-relaxed">
-              zhw1nq/vhming.dev
+              zhw1nq/{{ currentDomain }}
             </p>
           </template>
         </ClientOnly>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const { t } = useI18n()
-const colorMode = useColorMode()
 
 const cards = computed(() => [
   {
@@ -75,34 +76,56 @@ useHead(() => ({
     description: t("footer.company.description"),
   }),
 }))
+
+const isIntroComplete = useState('introComplete', () => false)
+
+const initAnimations = () => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  nextTick(() => {
+    // Hero text entrance animation with explicit fromTo to prevent jitter
+    gsap.fromTo('.hero-animate', 
+      { opacity: 0, y: 35 },
+      { opacity: 1, y: 0, duration: 0.9, ease: 'circ.out', stagger: 0.12 }
+    )
+
+    // Side Cards entrance with SmoothSlide fromTo
+    gsap.fromTo('.reveal-card', 
+      { opacity: 0, y: 35, scale: 0.92 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'circ.out', stagger: 0.08, delay: 0.1 }
+    )
+
+    // Tech Stack Marquees entrance fromTo
+    gsap.fromTo('.reveal-marquee', 
+      { opacity: 0, y: 25 },
+      { opacity: 1, y: 0, duration: 0.75, ease: 'circ.out', stagger: 0.12, delay: 0.15 }
+    )
+  })
+}
+
+onMounted(() => {
+  if (isIntroComplete.value) {
+    initAnimations()
+  } else {
+    const unwatch = watch(isIntroComplete, (completed) => {
+      if (completed) {
+        initAnimations()
+        unwatch()
+      }
+    })
+  }
+})
 </script>
 
 <template>
   <div
     class="min-h-[calc(100vh-8rem)] md:min-h-[calc(100vh-11rem)] flex flex-col py-8 sm:py-12 md:my-0 items-center justify-center relative w-full">
-    <ClientOnly>
-      <!-- Floating Lines background (locked to dark mode) -->
-      <FloatingLines
-        :linesGradient="['#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff', '#d4baff', '#ffb3e6', '#ffb3ba']"
-        :enabledWaves="['top', 'middle', 'bottom']"
-        :lineCount="8"
-        :lineDistance="8"
-        :animationSpeed="1"
-        :bendRadius="8.0"
-        :bendStrength="-2.0"
-        :interactive="true"
-        :parallax="true"
-      />
-      <!-- <Silk v-if="colorMode.value === 'dark'" :speed="5" :scale="1" color="#7B7481" :noise-intensity="1.5"
-        :rotation="0" /> -->
-      <!-- <SilkLight v-else :speed="5" :scale="1" color="#4A3F5C" :noise-intensity="1.5" :rotation="0" /> -->
-    </ClientOnly>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 flex items-center gap-8 lg:gap-16 relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 flex items-center gap-8 lg:gap-16 relative z-10 w-full reveal-card-container">
       <ClientOnly>
         <div class="hidden lg:flex flex-col gap-4 w-2/12 z-10">
           <Card v-for="(card, index) in cards.slice(0, 3)" :key="`card-ml-${index}`" :title="card.title"
             :href="card.href"
-            class="w-32 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
+            class="reveal-card w-32 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
             :class="{
               'ml-auto': index % 2 === 0,
               'rotate-2': index === 0,
@@ -121,11 +144,11 @@ useHead(() => ({
         </div>
       </ClientOnly>
 
-      <header class="flex-1 z-10 w-full">
+      <header class="flex-1 min-w-0 z-10 w-full">
         <div class="space-y-6 sm:space-y-8 z-10">
           <div class="space-y-3 sm:space-y-4">
             <h1
-              class="font-semibold text-center text-base sm:text-lg text-black/50 dark:text-white/50 md:text-xl flex items-center justify-center flex-wrap gap-2">
+              class="hero-animate font-semibold text-center text-base sm:text-lg text-black/50 dark:text-white/50 md:text-xl flex items-center justify-center flex-wrap gap-2">
               <ClientOnly>
                 <span>{{ t("home.hi") }}</span>
                 <template #fallback>
@@ -135,28 +158,28 @@ useHead(() => ({
               <span
                 class="text-black/60 select-none dark:text-white/60 transition-colors backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10 rounded-full py-2 sm:py-2.5 pl-2.5 sm:pl-3 pr-3 sm:pr-4 gap-1 inline-flex items-center w-max font-medium text-sm sm:text-base">
                 <SmartImage src="/assets/images/go_up.gif" class="object-cover h-6 w-6 sm:h-8 sm:w-8" />
-                zhw1nq
+                vhming
               </span>
             </h1>
 
-            <div class="flex flex-col items-center w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
-              <div class="inline-flex flex-col items-center">
-                <h1 class="font-semibold text-3xl sm:text-4xl md:text-5xl text-black/90 dark:text-white/90 lg:text-6xl">
+            <div class="flex flex-col items-center w-full max-w-5xl mx-auto px-2 sm:px-4">
+              <div class="inline-flex flex-col items-center hero-animate w-full text-center">
+                <h1 class="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-5xl 2xl:text-6xl text-black/90 dark:text-white/90 leading-tight">
                   <ClientOnly>
-                    <span class="block sm:whitespace-nowrap text-center">{{ t("home.fullStackDeveloper") }}</span>
+                    <span class="block text-center lg:whitespace-nowrap">{{ t("home.fullStackDeveloper") }}</span>
                     <template #fallback>
-                      <span class="block sm:whitespace-nowrap text-center">Full-Stack Developer</span>
+                      <span class="block text-center lg:whitespace-nowrap">Full-Stack Developer</span>
                     </template>
                   </ClientOnly>
                 </h1>
                 <ClientOnly>
                   <span
-                    class="block text-lg sm:text-xl md:text-2xl lg:text-3xl opacity-60 mt-1 sm:mt-2 sm:whitespace-nowrap font-semibold text-black/90 dark:text-white/90 text-right w-full">
+                    class="block text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl opacity-60 mt-1 sm:mt-2 font-semibold text-black/90 dark:text-white/90 text-center w-full leading-snug lg:whitespace-nowrap">
                     {{ t("home.gameDesigner") }}
                   </span>
                   <template #fallback>
                     <span
-                      class="block text-lg sm:text-xl md:text-2xl lg:text-3xl opacity-60 mt-1 sm:mt-2 sm:whitespace-nowrap font-semibold text-black/90 dark:text-white/90 text-right w-full">
+                      class="block text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl opacity-60 mt-1 sm:mt-2 font-semibold text-black/90 dark:text-white/90 text-center w-full leading-snug lg:whitespace-nowrap">
                       Game & UI/UX Designer
                     </span>
                   </template>
@@ -168,7 +191,7 @@ useHead(() => ({
 
         <div class="mt-4 sm:mt-6 flex flex-col items-center justify-center gap-y-3 sm:gap-y-4">
           <!-- Full-Stack Icons Slider (right to left) -->
-          <div class="flex flex-col items-center gap-y-2 w-full">
+          <div class="reveal-marquee flex flex-col items-center gap-y-2 w-full">
             <ClientOnly>
               <span
                 class="text-[10px] sm:text-xs text-black/40 dark:text-white/40 font-normal tracking-wider uppercase">{{
@@ -192,7 +215,7 @@ useHead(() => ({
           </div>
 
           <!-- Game Design Icons Slider (left to right) -->
-          <div class="flex flex-col items-center gap-y-2 w-full">
+          <div class="reveal-marquee flex flex-col items-center gap-y-2 w-full">
             <ClientOnly>
               <span
                 class="text-[10px] sm:text-xs text-black/40 dark:text-white/40 font-normal tracking-wider uppercase">{{
@@ -221,7 +244,7 @@ useHead(() => ({
         <div class="hidden lg:flex flex-col gap-4 w-2/12 z-10">
           <Card v-for="(card, index) in cards.slice(3, 6)" :key="`card-mr-${index}`" :title="card.title"
             :href="card.href"
-            class="w-32 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
+            class="reveal-card w-32 flex items-center justify-center transform hover:scale-105 transition-all backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
             :class="{
               'ml-auto': index % 2 !== 0,
               '-rotate-2': index === 0,
@@ -244,7 +267,7 @@ useHead(() => ({
     <ClientOnly>
       <div class="grid lg:hidden grid-cols-2 gap-3 sm:gap-4 w-full mt-8 sm:mt-12 md:mt-16 z-10 px-4 sm:px-6">
         <Card v-for="(card, index) in cards" :key="`card-m-${index}`" :title="card.title" :href="card.href"
-          class="w-full flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
+          class="reveal-card w-full flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-neutral-800/30 ring-1 ring-black/10 dark:ring-white/10"
           :style="{
             aspectRatio: '1/1',
           }">

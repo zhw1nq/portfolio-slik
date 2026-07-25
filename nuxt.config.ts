@@ -1,9 +1,136 @@
 import { defineNuxtConfig } from "nuxt/config"
-import head from "./config/head"
 
 const nitroPreset = process.env.NITRO_PRESET || "vercel"
+const headImage = "/logo.png"
+const headDescription =
+  "A passionate full-stack developer and game designer, also the owner of vhming.dev, crafting digital experiences with modern web technologies and creative design."
+
+const siteHead = {
+  title: "vhming.dev",
+  meta: [
+    { charset: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    {
+      hid: "description",
+      name: "description",
+      content: headDescription,
+    },
+    {
+      hid: "keywords",
+      name: "keywords",
+      content: "vhming, vhming.dev, fullstack developer, game designer, portfolio, web developer, game developer, UI/UX designer, Nuxt, Vue, Three.js",
+    },
+    {
+      hid: "author",
+      name: "author",
+      content: "vhming",
+    },
+    {
+      hid: "robots",
+      name: "robots",
+      content: "index, follow",
+    },
+    /* Twitter */
+    {
+      hid: "twitter:card",
+      name: "twitter:card",
+      content: "summary",
+    },
+    {
+      hid: "twitter:site",
+      name: "twitter:site",
+      content: "@vhming",
+    },
+    {
+      hid: "twitter:creator",
+      name: "twitter:creator",
+      content: "@vhming",
+    },
+    {
+      hid: "twitter:title",
+      name: "twitter:title",
+      content: "vhming.dev",
+    },
+    {
+      hid: "twitter:description",
+      name: "twitter:description",
+      content: headDescription,
+    },
+    {
+      hid: "twitter:image",
+      name: "twitter:image",
+      content: headImage,
+    },
+    /* Open-Graph */
+    {
+      hid: "og:type",
+      name: "og:type",
+      content: "website",
+    },
+    {
+      hid: "og:url",
+      name: "og:url",
+      content: "https://vhming.dev",
+    },
+    {
+      hid: "og:locale",
+      name: "og:locale",
+      content: "vi_VN",
+    },
+    {
+      hid: "og:site_name",
+      name: "og:site_name",
+      content: "vhming.dev",
+    },
+    {
+      hid: "og:description",
+      name: "og:description",
+      content: headDescription,
+    },
+    {
+      hid: "og:image",
+      name: "og:image",
+      content: headImage,
+    },
+    /* Others */
+    {
+      hid: "theme-color",
+      name: "theme-color",
+      content: "#171717",
+    },
+  ].map((i) => {
+    const item = { ...i } as Record<string, string>
+    if (item.name && !item.property) item.property = item.name
+    return item
+  }),
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/logo.png",
+    },
+    {
+      rel: "shortcut icon",
+      type: "image/png",
+      href: "/logo.png",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo.png",
+    },
+    {
+      rel: "stylesheet",
+      type: "text/css",
+      href: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css",
+    },
+  ],
+}
 
 export default defineNuxtConfig({
+  experimental: {
+    appManifest: false,
+  },
+
   nitro: {
     preset: nitroPreset,
     experimental: {
@@ -20,11 +147,26 @@ export default defineNuxtConfig({
   },
 
   app: {
-    head,
+    head: siteHead,
     pageTransition: { name: "fade", mode: "out-in" },
   },
 
   vite: {
+    plugins: [
+      {
+        name: "resolve-app-manifest-fallback",
+        resolveId(id: string) {
+          if (id === "#app-manifest" || id === "\0#app-manifest") {
+            return "\0#app-manifest"
+          }
+        },
+        load(id: string) {
+          if (id === "\0#app-manifest") {
+            return "export default {}"
+          }
+        },
+      },
+    ],
     optimizeDeps: {
       include: ["vue-i18n", "vue-tippy", "medium-zoom"],
       exclude: process.env.NODE_ENV === "development" ? ["@nuxtjs/google-fonts"] : [],
@@ -118,15 +260,15 @@ export default defineNuxtConfig({
     manifest: {
       name: "vhming.dev",
       short_name: "vhming.dev",
-      theme_color: "#f56565",
+      theme_color: "#171717",
       description:
-        "Professional JavaScript developer from Turkey specializing in React.js, Vue.js, TypeScript, Node.js, and Flutter. Passionate about crafting innovative software solutions and continuously improving programming skills.",
-      lang: "en",
+        "A passionate full-stack developer and game designer, crafting digital experiences with modern web technologies.",
+      lang: "vi",
       icons: [
         {
-          src: "/myLogo.svg",
+          src: "/logo.png",
           sizes: "512x512",
-          type: "image/svg+xml",
+          type: "image/png",
         },
       ],
     },
@@ -136,17 +278,18 @@ export default defineNuxtConfig({
     public: {
       social: {
         github: "https://github.com/zhw1nq",
-        email: "vhming@vhming.dev",
+        facebook: "https://facebook.com/vhming",
+        email: "hi@vhming.com",
         emailAlt: "hi@vhming.dev",
         phone: "+84 876.7878.32",
-        discord: "@vhming_",
+        discord: "@vhming",
       },
       location: {
         timezone: "UTC+7 và UTC+8",
         address: "Phường Móng Cái 1, Tỉnh Quảng Ninh, Việt Nam",
       },
       sponsor: {
-        github: "https://github.com/sponsors/vhming",
+        github: "https://github.com/sponsors/zhw1nq",
       },
       discord: {
         userId: process.env.DISCORD_USER_ID || "1263398676345393204",

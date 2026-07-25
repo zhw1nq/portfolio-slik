@@ -1,8 +1,9 @@
-/* Hide native scrollbar completely */
-html {
+/* Hide native browser scrollbars globally for custom in-web scrollbar */
+html,
+body {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
-  
+
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
     width: 0;
@@ -22,14 +23,14 @@ html {
   }
 }
 
-/* Custom scrollbar for specific elements (like dropdowns, modals) */
+/* Custom scrollbar for specific nested elements */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   
   &::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
   }
   
   &::-webkit-scrollbar-track {
@@ -37,23 +38,11 @@ html {
   }
   
   &::-webkit-scrollbar-thumb {
-    background: rgba(155, 155, 155, 0.5);
-    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
     
     &:hover {
-      background: rgba(155, 155, 155, 0.7);
-    }
-  }
-}
-
-.dark .custom-scrollbar {
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.4);
     }
   }
 }

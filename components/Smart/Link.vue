@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const attrs = useAttrs()
+const { domain: currentDomain } = useCurrentDomain()
 
 const props = defineProps<{
   href: any
@@ -21,7 +22,7 @@ const isInternalPage = computed((): boolean => {
 const getUtmLink = computed((): string => {
   try {
     const url = new URL(props.href)
-    url.searchParams.append("utm_source", "vhming.dev")
+    url.searchParams.append("utm_source", currentDomain.value)
 
     return url.href
   } catch (err) {

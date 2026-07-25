@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Repository } from "~/types/Response/GitHub"
+import type { Repository } from "~/types/api"
 
 import { useI18n } from 'vue-i18n'
 

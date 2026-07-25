@@ -17,6 +17,8 @@ const emit = defineEmits<{
   close: []
 }>()
 
+const { domain: currentDomain } = useCurrentDomain()
+
 // Video refs
 const videoRef = ref<HTMLVideoElement | null>(null)
 const progressTrackRef = ref<HTMLDivElement | null>(null)
@@ -314,7 +316,7 @@ onUnmounted(() => {
           </div>
 
           <!-- Right -->
-          <span class="brand-label">vhming.dev</span>
+          <span class="brand-label">{{ currentDomain }}</span>
         </div>
       </div>
     </div>

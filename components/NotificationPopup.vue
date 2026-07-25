@@ -4,17 +4,31 @@ import { ref, onMounted } from 'vue'
 
 const { t } = useI18n()
 const isVisible = ref(false)
+const isIntroComplete = useState('introComplete', () => false)
 
-onMounted(() => {
-  // Trigger slide down entry animation shortly after mount
+const startNotificationTimer = () => {
+  // Trigger slide down entry animation shortly after preloader completes
   setTimeout(() => {
     isVisible.value = true
-  }, 300)
+  }, 400)
 
   // Automatically slide up and hide after 4.8 seconds
   setTimeout(() => {
     isVisible.value = false
-  }, 4800)
+  }, 5200)
+}
+
+onMounted(() => {
+  if (isIntroComplete.value) {
+    startNotificationTimer()
+  } else {
+    const unwatch = watch(isIntroComplete, (completed) => {
+      if (completed) {
+        startNotificationTimer()
+        unwatch()
+      }
+    })
+  }
 })
 </script>
 
