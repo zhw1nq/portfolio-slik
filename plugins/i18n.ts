@@ -1,4 +1,13 @@
 import { createI18n } from 'vue-i18n'
+
+// Ensure Vue / vue-i18n production devtools feature flags are defined globally to prevent ReferenceError on SSR
+if (typeof (globalThis as any).__VUE_PROD_DEVTOOLS__ === 'undefined') {
+  ;(globalThis as any).__VUE_PROD_DEVTOOLS__ = false
+}
+if (typeof (globalThis as any).__INTLIFY_PROD_DEVTOOLS__ === 'undefined') {
+  ;(globalThis as any).__INTLIFY_PROD_DEVTOOLS__ = false
+}
+
 import en from '~/lang/en.json'
 import vi from '~/lang/vi.json'
 import zh_Hans from '~/lang/zh_Hans.json'

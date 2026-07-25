@@ -129,6 +129,11 @@ const siteHead = {
 export default defineNuxtConfig({
   nitro: {
     preset: nitroPreset,
+    replace: {
+      __VUE_PROD_DEVTOOLS__: "false",
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: "false",
+      __INTLIFY_PROD_DEVTOOLS__: "false",
+    },
     experimental: {
       trustedProxy: true,
     },
@@ -148,6 +153,11 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    define: {
+      __VUE_PROD_DEVTOOLS__: false,
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+      __INTLIFY_PROD_DEVTOOLS__: false,
+    },
     optimizeDeps: {
       include: ["vue-i18n", "vue-tippy", "medium-zoom"],
       exclude: process.env.NODE_ENV === "development" ? ["@nuxtjs/google-fonts"] : [],
